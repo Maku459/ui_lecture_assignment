@@ -30,24 +30,25 @@ function keyPressed() {
     score.updateScore();
 }
 
-
 // selection of branches
 function mousePressed(event) {
-    /* first get clicked position by 
-    console.log(event.layerX + ' , ' + event.layerY); 
-    or 
-    console.log(mouseX + ' , ' + mouseY);
-    
-    and then select
+    //console.log(event.layerX + ' , ' + event.layerY); 
+    //console.log(mouseX + ' , ' + mouseY);
     var branch = checkCloseBranch(20)[0];
-    */
+    if(branch === true) {
+        for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
+        var activeindex = checkCloseBranch(20)[1]
+        brc[activeindex].setMoveActive();
+        active_brc_index = activeindex;
+    }
 }
 
 // move and rotate 
 function mouseDragged(event) {
-    /*
-    see keyPressed
-    */
+    //console.log(event.layerX + ' , ' + event.layerY); 
+    //console.log(mouseX + ' , ' + mouseY);
+    brc[active_brc_index].setPosition(mouseX, mouseY);
+    console.log(active_brc_index);
 }
 
 // deactivate the selected branch
@@ -55,6 +56,8 @@ function mouseReleased() {
     /*
     you might need to deselect the selected branch 
     */
+    brc[active_brc_index].setSleep();
+    console.log(active_brc_index);
 }
 
 function checkCloseBranch(minDist) {
