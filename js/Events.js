@@ -8,30 +8,21 @@ function keyPressed() {
         brc[active_brc_index].setMoveActive(); // select the branch by activating it
     }
 
-    var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
 
     if (keyCode === LEFT_ARROW) {
-        if (keyIsDown(CONTROL)) angle -= 0.1 * PI; // change angle if Ctrl is pressed
-        else position.add(-10, 0); // change position
+        angle -= 0.1 * PI;
     } else if (keyCode === RIGHT_ARROW) {
-        if (keyIsDown(CONTROL)) angle += 0.1 * PI; // change angle if Ctrl is pressed
-        else position.add(10, 0); // change position
-    }
-    else if (keyCode === UP_ARROW) {
-        position.add(0, -10); // go up. Note that the value is mirrored due to the origin is top left corner.
-    }
-    else if (keyCode === DOWN_ARROW) {
-        position.add(0, 10); // go down
+        angle += 0.1 * PI;
     }
 
-    brc[active_brc_index].setPosition(position.x, position.y);
     brc[active_brc_index].setAngle(angle); // in radians
     score.updateScore();
 }
 
 // selection of branches
 function mousePressed(event) {
+    brc[active_brc_index].setSleep();
     //console.log(event.layerX + ' , ' + event.layerY); 
     //console.log(mouseX + ' , ' + mouseY);
     var branch = checkCloseBranch(20)[0];
@@ -45,10 +36,7 @@ function mousePressed(event) {
 
 // move and rotate 
 function mouseDragged(event) {
-    //console.log(event.layerX + ' , ' + event.layerY); 
-    //console.log(mouseX + ' , ' + mouseY);
     brc[active_brc_index].setPosition(mouseX, mouseY);
-    console.log(active_brc_index);
 }
 
 // deactivate the selected branch
@@ -56,8 +44,7 @@ function mouseReleased() {
     /*
     you might need to deselect the selected branch 
     */
-    brc[active_brc_index].setSleep();
-    console.log(active_brc_index);
+    score.updateScore();
 }
 
 function checkCloseBranch(minDist) {
