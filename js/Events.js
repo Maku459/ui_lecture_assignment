@@ -1,3 +1,8 @@
+let clickcount = 0;
+let entercount = 0;
+let rotatecount = 0;
+let shiftcount = 0;
+
 function keyPressed() {
 
     if(timerflag == false){
@@ -12,16 +17,29 @@ function keyPressed() {
         if (active_brc_index == brc.length - 1) active_brc_index = 0; // go back to the first index of branches
         else active_brc_index += 1; // add the index
         brc[active_brc_index].setMoveActive(); // select the branch by activating it
+        entercount++;
     }
 
     var angle = brc[active_brc_index].rot;
 
     if (keyCode === LEFT_ARROW) {
-        if (keyIsDown(SHIFT)) angle -= 0.02 * PI;
-        else angle -= 0.1 * PI;
+        if (keyIsDown(SHIFT)){
+            angle -= 0.02 * PI;
+            shiftcount++;
+            rotatecount++;
+        }else{
+            angle -= 0.1 * PI;
+            rotatecount++;
+        }
     } else if (keyCode === RIGHT_ARROW) {
-        if (keyIsDown(SHIFT)) angle += 0.02 * PI;
-        else angle += 0.1 * PI;
+        if (keyIsDown(SHIFT)){
+            angle += 0.02 * PI;
+            shiftcount++;
+            rotatecount++;
+        }else{
+            angle += 0.1 * PI;
+            rotatecount++;
+        }
     }
 
     brc[active_brc_index].setAngle(angle); // in radians
@@ -39,6 +57,7 @@ function mousePressed(event) {
         var activeindex = checkCloseBranch(20)[1]
         brc[activeindex].setMoveActive();
         active_brc_index = activeindex;
+        clickcount++;
     }
     if(timerflag == false){
         timerflag =  true;

@@ -201,7 +201,15 @@ class Score {
           this.total_score = this.total_score + this.time_score;
           this.scoreContainer.textContent = this.total_score;
           this.lastupdate = true;
-          console.log(this.lastupdate);
+          var clickcounter = document.getElementById('click-counter');
+          var entercounter = document.getElementById('enter-counter');
+          var rotatecounter = document.getElementById('rotate-counter');
+          var shiftcounter = document.getElementById('shift-counter');
+          clickcounter.textContent = clickcount;
+          entercounter.textContent = entercount;
+          rotatecounter.textContent = rotatecount;
+          shiftcounter.textContent = shiftcount;
+
           if (this.best_score < this.total_score) {
             this.best_score = this.total_score;
             this.bestContainer.textContent = this.best_score;
