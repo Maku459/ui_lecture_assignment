@@ -1,5 +1,11 @@
 function keyPressed() {
 
+    if(timerflag == false){
+        timerflag =  true;
+        timerlaunch = true;
+        console.log("timerlaunch");
+    }
+
     if (keyCode === ENTER) {
         // deactivate all branches
         for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
@@ -33,6 +39,11 @@ function mousePressed(event) {
         var activeindex = checkCloseBranch(20)[1]
         brc[activeindex].setMoveActive();
         active_brc_index = activeindex;
+    }
+    if(timerflag == false){
+        timerflag =  true;
+        timerlaunch = true;
+        console.log("timerlaunch");
     }
 }
 

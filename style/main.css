@@ -116,7 +116,7 @@ img {
     /* text-align: right; */
 }
 
-.score-container, .best-container {
+.score-container, .best-container, .time-container {
     position: relative;
     display: inline-block;
     background: #bbada0;
@@ -133,6 +133,10 @@ img {
     text-align: center;
 }
 
+.time-container {
+    background: #db7093;
+}
+
 .save-container {
 
   /*position: absolute;*/
@@ -147,7 +151,7 @@ img {
 
 }
 
-.score-container:after, .best-container:after {
+.score-container:after, .best-container:after, .time-container:after {
     position: absolute;
     width: 100%;
     top: 10px;
@@ -222,6 +226,9 @@ img {
     content: "Best";
 }
 
+.time-container:after {
+    content: "Time";
+}
 
 .drop-active {
     border-color: #aaa;

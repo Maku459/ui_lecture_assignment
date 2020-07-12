@@ -9,6 +9,11 @@
     <script>(language='javascript', type='text/javascript', src='https://jsconsole.com/js/remote.js?branchconnect')</script>
     <script language="javascript" type="text/javascript" src="lib/p5.js"></script>
     <script language="javascript" type="text/javascript" src="lib/p5.dom.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous">
+    </script>
     <!-- <script language="javascript" type="text/javascript" src="lib/jquery.min.js"></script> -->
 
     <script language="javascript" src="data/br20/plate.json"></script>
@@ -25,7 +30,6 @@
     <script language="javascript" type="text/javascript" src="js/Score.js"></script>
     <script language="javascript" type="text/javascript" src="js/UpdateJoints.js"></script>
     <!-- main.js has to be loaded in the end! -->
-    <script language="javascript" type="text/javascript" src="js/main.js"></script> 
     
   </head>
   <body>
@@ -47,12 +51,15 @@
         <div class="scores-container">
           <div class="score-container">100</div>
           <div class="best-container">100</div>
+          <div class="time-container" id="time-container"></div>
         </div>
       </div>
 
-      <div class="game-container">
+      <div class="game-container" id="game-container">
         <div id="canvas0"></div>
       </div>
+      <!--<script language="javascript" type="text/javascript" src="js/Time.js"></script>-->
+      <script language="javascript" type="text/javascript" src="js/main.js"></script> 
     </div>
   </body>
 </html>
