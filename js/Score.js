@@ -5,12 +5,14 @@ class Score {
     this.bestContainer = document.querySelector(".best-container");
     this.initializeScore();
     this.total_score = 0;
+    this.time_score = 0;
     this.invalid_num;
     this.best_score = localStorage.getItem("best_score");
     this.bestContainer.textContent = localStorage.getItem("best_score");
     this.island_exist = false;
     this.new_connected = false;
     this.complete = false;
+    this.lastupdate = false;
 
     this.accross_bound_weight = 500;
     this.island_weight = -1000;
@@ -57,15 +59,21 @@ class Score {
     var _total = this.joint_score + this.boundary_joint_score + this.invalids_score
       + this.branch_group_score + this.islands_score + this.boundary_joint_material_cutoff_score + this.across_connection_score;
 
+    if(_total < this.total_score){
+      _total = this.total_score;
+    }
+
     var difference = _total - this.total_score;
     this.total_score = _total;
     this.scoreContainer.textContent = this.total_score;
+    
     if (this.best_score < this.total_score) {
       this.best_score = this.total_score;
       this.bestContainer.textContent = this.best_score;
       localStorage.setItem("best_score", this.best_score);
       animateObject(this.bestContainer, "score-addition", this.best_score)
     }
+    
 
     if (difference > 0) animateObject(this.scoreContainer, "score-addition", difference);
     else if (difference < 0) animateObject(this.scoreContainer, "score-reduction", difference);
@@ -185,9 +193,22 @@ class Score {
           boundary.updateActivePoint();
           this.new_connected = true;
         } // game is completed
-        if (result[2] && this.invalid_num === 0 && this.groups.length === 1) {
+        if (result[2] && this.invalid_num === 0 && this.groups.length === 1 && this.lastupdate === false) {
           this.complete = true;
-          console.log("score.js, game completed!")
+          console.log("score.js, game completed!");
+          this.calcTimeScore();
+          console.log(this.time_score);
+          this.total_score = this.total_score + this.time_score;
+          this.scoreContainer.textContent = this.total_score;
+          this.lastupdate = true;
+          console.log(this.lastupdate);
+          if (this.best_score < this.total_score) {
+            this.best_score = this.total_score;
+            this.bestContainer.textContent = this.best_score;
+            localStorage.setItem("best_score", this.best_score);
+            animateObject(this.bestContainer, "score-addition", this.best_score);
+          }
+          if (difference > 0) animateObject(this.scoreContainer, "score-addition", difference);
         }
         // console.log(addScore);
         this.across_connection_score += result[0];
@@ -202,6 +223,9 @@ class Score {
     console.log("islands:", this.islands_score);
   }
 
+  calcTimeScore(){
+    this.time_score = Math.ceil((600000 - elapsedTime)/100);
+  }
 
 
   getNextBranch(joint_node) {

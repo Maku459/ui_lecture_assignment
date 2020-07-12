@@ -101,7 +101,7 @@ function draw() {
       //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
       },10);
   }
-  
+
   setInterval(function(){
     if(timerflag){
       if(timerlaunch === true && timerflag === true){
