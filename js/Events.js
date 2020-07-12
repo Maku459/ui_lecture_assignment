@@ -11,9 +11,11 @@ function keyPressed() {
     var angle = brc[active_brc_index].rot;
 
     if (keyCode === LEFT_ARROW) {
-        angle -= 0.1 * PI;
+        if (keyIsDown(SHIFT)) angle -= 0.02 * PI;
+        else angle -= 0.1 * PI;
     } else if (keyCode === RIGHT_ARROW) {
-        angle += 0.1 * PI;
+        if (keyIsDown(SHIFT)) angle += 0.02 * PI;
+        else angle += 0.1 * PI;
     }
 
     brc[active_brc_index].setAngle(angle); // in radians
