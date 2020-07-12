@@ -36,7 +36,8 @@
     <div class="container" id="container">
       <div class="heading">
         <instruction>
-          <h1> Goal: Connect 4 corners by moving branches </h1>
+          <h1>Branch Connect</h1>
+          <p><strong>枝を移動・回転させ、4つの角と枝が全体としてすべて繋がるようにすることがこのゲームの目標です。 </strong></p>
           <!--
           <h1> How to use: </h1> 
           <p> - Select a branch by Click or Enter key</p>
@@ -44,9 +45,13 @@
           <p> - Rotate the branch by Left Arrow key or Right Arrow key</p>
           <h1> Colors: </h1>
           -->
-          <p> - Green dots: valid joints. Red dots: invalid joints</p>
-          <p> - Invalid group: Red branches. Valid group: other colors.</p>
-          <p> - Total Score: Branch Score + Time Bonus</p>
+          <p>- マウスおよびキーで操作できます。</p>
+          <p>- 緑の点は有効、赤の点は無効（枝同士が接しているだけだったり、無効な角度をしていると無効判定されます）</p>
+          <p>- 四角形四隅の黄色い点は、枝と正しく繋がると灰色に変わります。</p>
+          <p>- 繋がった枝はグループとなり同じ色に変わります。1色のグループになるようにしてください。ただし、赤色の枝は無効です。</p>
+          <p>- <strong>"Connected!"というメッセージが表示されるまでプレイしてください。</strong></p>
+          <p>- <strong>どうしても操作がわからない場合、途中で断念しても構いません。</strong></p>
+          <p>- スコアはリアルタイムに更新されますが、最後にタイムボーナスが加算されます。</p>
         </instruction>
 
         <div class="scores-container">
